@@ -1,80 +1,50 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://assetapibr.apiblueprint.org/
 
 # asset-api
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Asset API is an API to get information about financial assets, such as stock value, 
+changes over time, etc.
 
-## Questions Collection [/questions]
 
-### List All Questions [GET]
+
+## Asset Listing [/assets]
+
+All types of assets that someone can posess.
+
+### List All Assets [GET]
 
 + Response 200 (application/json)
+    + Attributes (Asset)
+    
+    
+## Asset Types [/asset_type]
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+Types of assets available.
 
-### Create a New Question [POST]
+### List asset types [GET]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
++ Response 200 (application/json)
+    + Attributes (Asset Type)
 
-+ Request (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
+# Data structures
 
-+ Response 201 (application/json)
+## Asset (object)
++ type: stock (string)
+    The type of the asset. Must be a type defined in /asset_type
 
-    + Headers
++ currency: BRL (string)
+    Currency code based on [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm) currency
+    codes.
+    
++ unit_value: 201.98 (number)
+    Value of a single unit of the asset. TODO: how do we specify precision?
+    
 
-            Location: /questions/2
-
-    + Body
-
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+## Asset Type (object)
++ type: stock (string)
+    The type of the asset.
+    
++ description (string)
+    A description of the asset type.
