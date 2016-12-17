@@ -8,7 +8,7 @@ changes over time, etc.
 
 
 
-## Asset Listing [/assets]
+## Asset Listing [/asset]
 
 All types of assets that someone can posess.
 
@@ -17,6 +17,13 @@ All types of assets that someone can posess.
 + Response 200 (application/json)
     + Attributes (array[Asset])
     
+## Get single asset [/asset/{code}]
++ Request 
+    + Parameters
+        + code (string) - The uniquely identifying code for the asset
+
++ Response 200 (application/json)
+    + Attributes (Asset)
     
 ## Asset Types [/asset_type]
 
